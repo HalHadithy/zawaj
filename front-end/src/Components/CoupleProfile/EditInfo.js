@@ -5,20 +5,53 @@ const EditInfo= () => {
 
     const [coupleInfo, setCoupleInfo] = useState({})
     const [picData, setPicData] = useState("")
-    const [form, setForm] = useState({ email, username, nearlywed_1_first, nearlywed_1_last, nearlywed_2_first, nearlywed_2_last, our_story, venue_name, venue_location, invitation, invitation_style, website, website_style})
+    const [form, setForm] = useState(
+        { 
+            email:"", 
+            username:"", 
+            nearlywed_1_first: "", 
+            nearlywed_1_last: "", 
+            nearlywed_2_first: "", 
+            nearlywed_2_last: "", 
+            our_story: "", 
+            venue_name: "", 
+            venue_location: "", 
+            invitation: true, 
+            invitation_style: "", 
+            website: true, 
+            website_style: ""
+        })
     
     useEffect(() => {
-        fetch(`/current_couple/${1}`, {
+        fetch(`http://localhost:4020/current_couple/${1}`, {
             method: "GET"
         })
         .then((res) => res.json())
         .then((data) => {
+            console.log(data)
             setCoupleInfo(data)
-            setForm(data)
+
+            // there is a better way to do this but for now, I just want it to work...
+            setForm(
+                {
+                    email: data.email, 
+                    username: data.username, 
+                    nearlywed_1_first: data.nearlywed_1_first,
+                    nearlywed_1_last: data.nearlywed_1_last,
+                    nearlywed_2_first: data.nearlywed_2_first, 
+                    nearlywed_2_last: data.nearlywed_2_last, 
+                    our_story: data.our_story,
+                    venue_name: data.venue_name, 
+                    venue_location: data.venue_location, 
+                    invitation: data.invitation,
+                    invitation_style: data.invitation_style,
+                    website: data.website,
+                    website_style: data.website_style
+                })
         })
     },[])
 
-    const updateCheckbox =()=>{
+    const updateCheckbox =(e)=>{
         setForm({
             ...form,
             [e.target.name]: !e.target.value
@@ -34,7 +67,7 @@ const EditInfo= () => {
 
     const handleInfoSubmit =(e)=>{
         e.preventDefault()
-        fetch(`/current_couple/${id}`, {
+        fetch(`http://localhost:4020/couples/${1}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +84,7 @@ const EditInfo= () => {
         e.preventDefault()
         const formData = new FormData();
         formData.append('image', picData)
-        fetch(`/change_photo/${1}`, {
+        fetch(`http://localhost:4020/change_photo/${1}`, {
           method: 'PATCH',
           body: formData
         })
@@ -65,27 +98,27 @@ const EditInfo= () => {
                 <h2>Edit your information</h2>
                 <form action="/action_page.php" onSubmit={handleInfoSubmit}>
                     {/* username */}
-                    <label for="check-invitation">Username: </label>
+                    <label>Username: </label>
                     <input 
                         type="text" 
-                        id="edit-username" 
+                        id="edit-username"
                         name="username" 
                         value={form.username}
                         onChange={updateInfo}
                     />
-                    <br/>
-                    {/* password, do I want to let them reset this??? */}
-                    <label for="check-invitation">Password: </label>
+                    {/* <br/> */}
+                    {/* password, I don't want to let them reset this*/}
+                    {/*<label>Password: </label>
                     <input 
                         type="text" 
                         id="edit-password" 
                         name="password" 
                         value={form.password}
                         onChange={updateInfo}
-                    />
+                    /> */}
                     <br/>
                     {/* email */}
-                    <label for="check-invitation">Primary Email: </label>
+                    <label>Primary Email: </label>
                     <input 
                         type="text" 
                         id="edit-email" 
@@ -95,7 +128,7 @@ const EditInfo= () => {
                     />
                     <br/>
                     {/* nearlywed 1 */}
-                    <label for="check-invitation">Nearlywed First Name: </label>
+                    <label>Nearlywed First Name: </label>
                     <input 
                         type="text" 
                         id="edit-nearlywed_1_first" 
@@ -103,7 +136,7 @@ const EditInfo= () => {
                         value={form.nearlywed_1_first}
                         onChange={updateInfo}
                     />
-                     <label for="check-invitation">Last Name: </label>
+                     <label>Last Name: </label>
                     <input 
                         type="text" 
                         id="edit-nearlywed_1_last" 
@@ -113,7 +146,7 @@ const EditInfo= () => {
                     />
                     <br/>
                     {/* nearlywed 2 */}
-                    <label for="check-invitation">Nearlywed First Name: </label>
+                    <label>Nearlywed First Name: </label>
                     <input 
                         type="text" 
                         id="edit-nearlywed_2_first" 
@@ -121,7 +154,7 @@ const EditInfo= () => {
                         value={form.nearlywed_2_first}
                         onChange={updateInfo}
                     />
-                     <label for="check-invitation">Last Name: </label>
+                     <label>Last Name: </label>
                     <input 
                         type="text" 
                         id="edit-nearlywed_2_last" 
@@ -131,7 +164,7 @@ const EditInfo= () => {
                     />
                     <br/>
                     {/* Story */}
-                    <label for="check-invitation">Your Love Story: </label>
+                    <label>Your Love Story: </label>
                     <input 
                         type="text" 
                         id="edit-our_story" 
@@ -140,22 +173,22 @@ const EditInfo= () => {
                         onChange={updateInfo}
                     />
                     <br/>
-                    <label for="check-invitation">Create A Wedding Invitation: </label>
+                    <label>Create A Wedding Invitation: </label>
                     <input 
                         type="checkbox" 
                         id="check-invitation" 
-                        name="invitation?" 
+                        name="invitation" 
                         value={form.invitation}
-                        onCheck={updateCheckbox}
+                        onClick={updateCheckbox}
                     />
                     <br/>
-                     <label for="check-website">Create a Wedding Website: </label>
+                     <label>Create a Wedding Website: </label>
                     <input 
                         type="checkbox" 
                         id="check-website" 
-                        name="website?" 
+                        name="website" 
                         value={form.website}
-                        onCheck={updateCheckbox}
+                        onClick={updateCheckbox}
                     />
                     <input 
                         type="submit" 

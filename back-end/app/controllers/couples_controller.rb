@@ -1,5 +1,5 @@
 class CouplesController < ApplicationController
-  before_action :set_couple, except: [:index, :create]
+  before_action :set_couple, except: [:index, :create, :login]
 
   
   # GET /couples
@@ -57,10 +57,11 @@ class CouplesController < ApplicationController
 
   # PATCH /change_photo/:id
   def change_photo
-    if @couple.update(photo_params)
-        render json: @couple, status: :ok
+    couple = Couple.find(params[:id])
+    if couple.update(photo_params)
+        render json: couple, status: :ok
     else
-        render json: { errors: @couple.errors.full_messages}, status: 422
+        render json: { errors: couple.errors.full_messages}, status: 422
     end 
   end
 

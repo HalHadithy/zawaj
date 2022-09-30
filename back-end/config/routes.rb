@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   # not entirely sure this is the correct way to do it
   post '/login', to:'couples#login'
-  get '/current_couple', to: 'couples#current_couple'
-  
+  get '/current_couple/:id', to: 'couples#current_couple'
+
   # create or replace photos
   patch '/change_photo/:id', to: 'couples#change_photo'
 
