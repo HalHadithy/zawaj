@@ -1,3 +1,4 @@
+
 require_relative "boot"
 
 require "rails/all"
@@ -23,5 +24,13 @@ module BackEnd
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # here we will apply middleware that will allow us to send receive cookies
+    config.middleware.use ActionDispatch::Cookies    
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    #middleware that adds security, allow us only to accept cookies from appoications 
+    # running on the  same domain as ours 
+    config.action_dispatch.cookies_same_site_protection = :strict
   end
 end

@@ -1,0 +1,42 @@
+.profile-div {
+    position: relative;
+    margin: 8%;
+    padding: 1.2em;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-div div {
+    
+    border: 1px solid black;
+}
+
+
+
+.profile-left{
+    border: 1px solid black;
+    padding: 2rem 1rem 2rem 1rem;
+    width: 15%;
+}
+
+.profile-right{
+    border: 1px solid black;
+    padding: 3rem;
+    width: 80%;
+}
+
+.profile-right img {
+    max-width: 200px;
+    max-height: 500px;
+    margin: 1.2em;
+}
+
+.profile-div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 2rem;
+}
+
+.profile-div li {
+    padding: 1rem 0rem 1rem 0rem;
+}
