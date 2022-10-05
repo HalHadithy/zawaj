@@ -18,7 +18,7 @@ const Footer = () => {
 
         <p> something here about how great we are</p>
 
-        <div class="socials">
+        <div className="socials">
             <BsInstagram className="icon"/>        
             <FaFacebookF className="icon"/>
             <GrTwitter className="icon"/>

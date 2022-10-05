@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import logo from '../../Images/logo.jpeg'
+
+
 const CreateAnAccount = ({setIsLoggedIn}) => {
 
   const navigate = useNavigate();
@@ -47,8 +50,9 @@ const CreateAnAccount = ({setIsLoggedIn}) => {
   console.log(formData)
   
     return (
-      <div>
-        <title>Create An Account</title>
+      <div id="create-account" className="login-container">
+        <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
+        <h3>Create An Account</h3>
 
         <form onSubmit={handleSubmit}>
           <label>
@@ -70,7 +74,7 @@ const CreateAnAccount = ({setIsLoggedIn}) => {
             />
           </label>
           <label>
-            Primary Email Account:
+            Primary Email:
             <input
               type="text"
               name="email"

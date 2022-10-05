@@ -48,7 +48,7 @@ const LogIn = ({setIsLoggedIn}) => {
     
 
     return (
-      <div id="login-container">
+      <div className="login-container">
         <img src={rings} alt="rings" className="rings"/>
 
         <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>

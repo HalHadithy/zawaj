@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import'../../Style/NavBar.css'
 import logo from '../../Images/logo.jpeg'
 
+
 const NavBar = (  {isLoggedIn, currentCouple}  ) => {
   const navigate = useNavigate();
   const loginNav = <LogInNav isLoggedIn ={isLoggedIn} currentCouple={currentCouple}/> 
@@ -23,17 +24,15 @@ const NavBar = (  {isLoggedIn, currentCouple}  ) => {
         </div>
         
         <div className="not-scrollable-nav">
-          <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
-          <h2>Zawaj</h2>
+          <div>
+            <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
+            <h2>Zawaj</h2>
+          </div>
           {isLoggedIn ? loginNav : null }
         </div>
 
       </div>
                        
-      <div id="loggedIn-nav-hidden">
-          <h6 onClick={() => navigate("/profile-page")}>view profile</h6>
-          <h6 onClick={() => navigate("/logout")}>logout</h6>
-      </div>
     </div>
     
   )

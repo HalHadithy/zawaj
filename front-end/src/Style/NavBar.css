@@ -32,8 +32,9 @@
 .not-scrollable-nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;   
-    padding: 0 2rem;
+    justify-content: space-between;  
+    background-color: #d3adad; 
+    padding: 0.5rem 2rem;
 }
 
 #is-logged-in{
@@ -67,17 +68,19 @@
     height: 30px;
 }
 
-#loggedIn-nav-hidden {
-    display: none;
-    background-color: green;
+#hiden-dropdown {
+    /* display: none; */
+    /* background-color: green; */
     position: fixed;
-    left: 88.5%;
-    top: 27%;
+    left: 82%;
+    top: 22%;
     padding: 0;
     margin: 0;
+    z-index: 2;
+    background-color: white;
 }
 
-#loggedIn-nav-hidden h6 {
+#hiden-dropdown a {
     position: relative;
     border: 0.5px solid black;
     padding: 0.5rem;
@@ -86,11 +89,15 @@
 }
 
 
-#loggedIn-nav:hover + #loggedIn-nav-hidden {
-    display: block;
+#loggedIn-nav:hover #hiden-dropdown {
+    display: flex;
+    flex-direction: column;
     transition: 5s;
     transition-timing-function: ease-out; 
 }
+
+#hiden-dropdown a:hover {background-color: #ddd;}
+
 
 img {
     width: 50px;

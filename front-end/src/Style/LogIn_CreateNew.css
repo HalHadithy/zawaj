@@ -1,4 +1,4 @@
-#login-container {
+.login-container {
     display: flex;
     flex-direction: column;
     height: 25rem;
@@ -13,23 +13,32 @@
     color:white;
 }
 
+#create-account {
+    height: 50rem;
+    width: 25rem;
+    margin-bottom: 10rem;
+}
 
-#login-container img {
+
+.login-container img {
     margin: 0 auto;
 }
 
-#login-container h3 {
+.login-container h3 {
     margin: 2rem  auto;
 }
 
-#login-container form {
+.login-container form {
     display: flex;
     flex-direction: column;
     justify-content: space-around 2rem; 
-
 }
 
-button {
+#create-account form {
+    padding-left: 3rem;
+}
+
+.login-container button {
   width:  100px;
   border-radius:  14px; 
   text-align:  center; 
@@ -49,7 +58,6 @@ button {
 button:hover {
     box-shadow:  0px 1px 9px 0px rgba(0,0,0,.50);
     background-color: rgba(0,0,0,.10); 
-
 }
 
 
