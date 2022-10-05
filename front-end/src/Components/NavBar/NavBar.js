@@ -24,6 +24,7 @@ const NavBar = (  {isLoggedIn, currentCouple}  ) => {
         
         <div className="not-scrollable-nav">
           <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
+          <h2>Zawaj</h2>
           {isLoggedIn ? loginNav : null }
         </div>
 

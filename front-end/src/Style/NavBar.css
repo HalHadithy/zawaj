@@ -1,3 +1,10 @@
+/* .nav{
+    padding: 0 2rem;
+} */
+.scrollable-nav{
+    padding: 0 2rem;
+}
+
 #coup-vend{
     display: flex;
     flex-direction: row;
@@ -26,7 +33,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;   
-    padding: 1rem;
+    padding: 0 2rem;
 }
 
 #is-logged-in{
@@ -43,7 +50,7 @@
     display: flex;
     flex-direction: row;
     position: relative;
-    left: 29%;
+    /* left: 29%; */
 }
 
 #loggedIn-nav h5{
@@ -61,8 +68,8 @@
 }
 
 #loggedIn-nav-hidden {
-    /* display: none; */
-    z-index: 2;
+    display: none;
+    background-color: green;
     position: fixed;
     left: 88.5%;
     top: 27%;
@@ -83,7 +90,6 @@
     display: block;
     transition: 5s;
     transition-timing-function: ease-out; 
-    background-color: green;
 }
 
 img {
