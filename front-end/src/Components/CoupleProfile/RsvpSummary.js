@@ -19,7 +19,6 @@ const RsvpSummary= () => {
 
                     <div className="rsvp-info-div">
                         <h3>Guests Not Attending</h3>
-
                     </div>
 
                     <div className="rsvp-info-div">

@@ -1,22 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileNavBar from "./ProfileNavBar";
 import GuestListTable from "./GuestListTable";
 
 
-const ProfilePage = (  ) => {
+const ProfilePage = ( {currentCouple} ) => {
     const navigate = useNavigate();
+    const [couple, setCouple] = useState({})
 
-    // const [imageURLArray, setImageURLArray] = useState([])
+    console.log(currentCouple)
 
-    // fetch images for this couple, setImageURLArray()
-    const imageURLArray = [
-        'https://www.mannasunevents.com/wp-content/uploads/2019/07/Stella_Yang_Photography_Paris_proposal__82_of_112.jpg',
-        'https://www.mannasunevents.com/wp-content/uploads/2019/07/Stella_Yang_Photography_Paris_proposal__80_of_112.jpg',
-        'https://www.mannasunevents.com/wp-content/uploads/2019/07/Stella_Yang_Photography_Paris_proposal__60_of_112-1.jpg'
-    ]
-
-    //fetch guestlist
 
     //fetch wedding party, there should be a route in backend just for wedding party
      
@@ -25,42 +18,55 @@ const ProfilePage = (  ) => {
         <div className="profile-div">
             <ProfileNavBar/>
             <div className="profile-right">
-                <h2>{ `Frank & Lisa's Wedding Profile` /*`${nearlywedName1} & ${nearlywedName2}'s Wedding Profile`*/}</h2>
+                <h2>{ `${currentCouple.nearlywed_1_first} & ${currentCouple.nearlywed_2_first}'s Wedding Profile`}</h2>
                 <div>
                     <button onClick={()=>navigate('/edit-info')}>Edit</button>
                     <ul>
-                        <li>Username: {}</li>
-                        <li>Email address:</li>
-                        <li>Nearlywed Name:</li>
-                        <li>Nearlywed Name:</li>
-                        <li>Your Story:</li>
-                        <li>Images:</li>
+                        <li>Username: {currentCouple.username}</li>
+                        <li>Primary Email Address: {currentCouple.email}</li>
+                        <li>Nearlywed Name: {currentCouple.nearlywed_1_first + " " + currentCouple.nearlywed_1_last}</li>
+                        <li>Nearlywed Name: {currentCouple.nearlywed_2_first + " " + currentCouple.nearlywed_2_last}</li>
+                        <li>Your Story: </li>
+                        <li>{currentCouple.our_story}</li>
+                        <li>Images: {currentCouple.photo_url}</li>
                     </ul>
                     <div>
-                        {imageURLArray.map((imageURL)=>{return(<img src={imageURL} alt='Your Best Memories' key ={imageURL}/>)})}
+                    {currentCouple.photo_url 
+                        ? 
+                        <img src={currentCouple.photo_url} alt='Your Best Memories' key ={currentCouple.photo_url}/>
+                        : "no photos"
+                    }
                     </div>
               
                 </div>
 
-                <div onClick={()=>navigate('/edit-guest-list')}>
-                    <button >Edit</button>
+                <div>
+                    <button onClick={()=>navigate('/edit-guest-list')}>Edit</button>
+                    <h2>Guest Information</h2>
                     <GuestListTable/>
 
                 </div>
 
-                <div onClick={()=>navigate('/edit-info')}>
-                    <button>Edit</button>
-                    <h2>{ `Orders` /*`${nearlywedName1} & ${nearlywedName2}'s Wedding Profile`*/}</h2>
+                <div>
+                    <h2>Event Information</h2>
                     <dl>
-                        <dt>Invitations: {}</dt>
-                        <dd>Style:</dd>
-                        <dt>Wedding Website:</dt>
-                        <dd>Style:</dd>
+                        <dt>Venue: {currentCouple.venue_name}</dt>
+                        <dt>Venue Address: {currentCouple.venue_location}</dt>
+                        {/* https://developers.google.com/maps/documentation/javascript/react-map */}
+                    </dl>
+
+                </div>
+
+                <div >
+                    <button onClick={()=>navigate('/edit-info')}>Edit</button>
+                    <h2>Orders</h2>
+                    <dl>
+                        <dt>Invitations: {currentCouple.invitation ? currentCouple.invitation_style : "no invitation"}</dt>
+                        <dt>Wedding Website: {currentCouple.website ? currentCouple.website_style : "no website"}</dt>
                     </dl>
                 </div>
 
-                <div>
-                </div>
+                
             </div>
            
             

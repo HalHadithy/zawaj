@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
   resources :couples
-  resources :inviations
+  resources :invitations
   resources :guests
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-
-
-  # not entirely sure this is the correct way to do it
   post '/login', to:'couples#login'
-  get '/current_couple/:id', to: 'couples#current_couple'
+  patch '/couples_edit', to:'couples#couples_edit'
+  get '/current_couple', to: 'couples#current_couple'
+  patch '/change_photo', to: 'couples#change_photo'
+  # delete '/delete_photo/:id', to: 'couples#delete_photo'
 
-  # create or replace photos
-  patch '/change_photo/:id', to: 'couples#change_photo'
+  get '/guests_couple', to: 'guests#guests_couple'
 
-  # delete '/couples/:id/photos/:id', to: 'couples#destroy'
+  get '/find_by_address', to: 'invitations#find_by_address'
  
 end

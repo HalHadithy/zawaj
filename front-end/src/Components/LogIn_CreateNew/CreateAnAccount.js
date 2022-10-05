@@ -1,51 +1,124 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CreateAnAccount = ({setIsLoggedIn, setCurrentCouple}) => {
-
-
-
-
+const CreateAnAccount = ({setIsLoggedIn}) => {
 
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("")
+  
+  const [formData, setFormData] = useState({
+    username:'',
+    password:'',
+    email:'',
+    nearlywed_1_first: '', 
+    nearlywed_1_last: '',
+    nearlywed_2_first:'',
+    nearlywed_2_last:''
+  });
 
   
   const handleSubmit = (e) =>{
     e.preventDefault()
+    console.log("starting create")
+    console.log(formData)
 
+    fetch("http://localhost:4020/couples", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify( formData ),
+    })
+    .then((r) => r.json())
+    .then((data) => {
+      localStorage.setItem("jwt", data.token)
+      setIsLoggedIn(true)
 
-    navigate(-2)
-
+    })
+    navigate(-1)
   }
 
+  let updateForm = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-
+  console.log(formData)
+  
     return (
       <div>
-        <title>Login</title>
+        <title>Create An Account</title>
 
         <form onSubmit={handleSubmit}>
-            <label>
-              Username:
-              <input
+          <label>
+            Username:
+            <input
                 type="text"
-                value={username}
-                onChange={(e)=>setUsername(e.target.value)}
-              />
-            </label>
-            <label>
-              Password:
-              <input
-                type="text"
-                value={password}
-                onChange={(e)=>{ setPassword(e.target.value) } }
-              />
-            </label>
-            
-          <button type="submit">Login</button>
+                name="username"
+                value={formData.username}
+                onChange={updateForm}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="text"
+              name="password"
+              value={formData.password}
+              onChange={updateForm}
+            />
+          </label>
+          <label>
+            Primary Email Account:
+            <input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={updateForm}
+            />
+          </label>
+          <h5>Nearly-Wed Information:</h5>
+          <label>
+            First Name:
+            <input
+              type="text"
+              name="nearlywed_1_first"
+              value={formData.nearlywed_1_first}
+              onChange={updateForm}
+            />
+          </label>
+          <label>
+            Last Name:
+            <input
+              type="text"
+              name="nearlywed_1_last"
+              value={formData.nearlywed_1_last}
+              onChange={updateForm}
+            />
+          </label>
+
+          <h5>Nearly-Wed Information:</h5>
+          <label>
+            First Name:
+            <input
+              type="text"
+              name="nearlywed_2_first"
+              value={formData.nearlywed_2_first}
+              onChange={updateForm}
+            />
+          </label>
+          <label>
+            Last Name:
+            <input
+              type="text"
+              name="nearlywed_2_last"
+              value={formData.nearlywed_2_last}
+              onChange={updateForm}
+            />
+          </label>
+
+          <button type="submit">Create Account</button>
 
         </form>
 

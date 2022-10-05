@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import ProfileNavBar from './ProfileNavBar'
 
-const EditInfo= () => {
+const EditInfo= ({setCurrentCouple}) => {
 
-    const [coupleInfo, setCoupleInfo] = useState({})
     const [picData, setPicData] = useState("")
     const [form, setForm] = useState(
         { 
@@ -22,35 +21,36 @@ const EditInfo= () => {
             website_style: ""
         })
     
-    useEffect(() => {
-        fetch(`http://localhost:4020/current_couple/${1}`, {
-            method: "GET"
+    useEffect(() =>{
+        let token = localStorage.getItem("jwt");
+        fetch(`http://localhost:4020/current_couple`, {
+            headers: {
+                token: token,
+                "Content-Type": "application/json",
+            },
         })
         .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            setCoupleInfo(data)
-
-            // there is a better way to do this but for now, I just want it to work...
+        .then((couple) => {
             setForm(
                 {
-                    email: data.email, 
-                    username: data.username, 
-                    nearlywed_1_first: data.nearlywed_1_first,
-                    nearlywed_1_last: data.nearlywed_1_last,
-                    nearlywed_2_first: data.nearlywed_2_first, 
-                    nearlywed_2_last: data.nearlywed_2_last, 
-                    our_story: data.our_story,
-                    venue_name: data.venue_name, 
-                    venue_location: data.venue_location, 
-                    invitation: data.invitation,
-                    invitation_style: data.invitation_style,
-                    website: data.website,
-                    website_style: data.website_style
+                    email: couple.email, 
+                    username: couple.username, 
+                    nearlywed_1_first: couple.nearlywed_1_first,
+                    nearlywed_1_last: couple.nearlywed_1_last,
+                    nearlywed_2_first: couple.nearlywed_2_first, 
+                    nearlywed_2_last: couple.nearlywed_2_last, 
+                    our_story: couple.our_story,
+                    venue_name: couple.venue_name, 
+                    venue_location: couple.venue_location, 
+                    invitation: couple.invitation,
+                    invitation_style: couple.invitation_style,
+                    website: couple.website,
+                    website_style: couple.website_style
                 })
-        })
-    },[])
-
+        });
+    },[]) 
+    
+    
     const updateCheckbox =(e)=>{
         setForm({
             ...form,
@@ -67,28 +67,39 @@ const EditInfo= () => {
 
     const handleInfoSubmit =(e)=>{
         e.preventDefault()
-        fetch(`http://localhost:4020/couples/${1}`, {
-            method: "PATCH",
+        let token = localStorage.getItem("jwt");
+        fetch(`http://localhost:4020/couples_edit`, {
+            method: 'PATCH',
             headers: {
+                token: token,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(form)
         })
         .then((res) => res.json())
-        .then((data) => {
-        //   localStorage.setItem("jwt", data.token);
-        setCoupleInfo(data)})
+        .then((data) => {setCurrentCouple(data)})
     }
 
     const createPics = (e) => {
         e.preventDefault()
+        let token = localStorage.getItem("jwt");
         const formData = new FormData();
-        formData.append('image', picData)
-        fetch(`http://localhost:4020/change_photo/${1}`, {
+        formData.append('photo', picData)
+        console.log(formData) 
+
+        fetch(`http://localhost:4020/change_photo`, {
           method: 'PATCH',
+          headers: {
+            token: token,
+            "Content-Type": "application/json",
+            },
           body: formData
         })
-      }
+    }
+
+    //   console.log(form)
+    console.log(picData) 
+
 
 
     return (
@@ -106,16 +117,6 @@ const EditInfo= () => {
                         value={form.username}
                         onChange={updateInfo}
                     />
-                    {/* <br/> */}
-                    {/* password, I don't want to let them reset this*/}
-                    {/*<label>Password: </label>
-                    <input 
-                        type="text" 
-                        id="edit-password" 
-                        name="password" 
-                        value={form.password}
-                        onChange={updateInfo}
-                    /> */}
                     <br/>
                     {/* email */}
                     <label>Primary Email: </label>
@@ -203,9 +204,9 @@ const EditInfo= () => {
                     <label>Choose a photo to share with family and friends:</label>
                     <input
                         type="file"
-                        id="image"
+                        id="photo"
                         accept='image/*'
-                        onChange={(e)=>setPicData(e.target.files[0])}
+                        onChange={(e)=> {setPicData(e.target.files[0])}}
                     />
                     <input 
                         type="submit" 

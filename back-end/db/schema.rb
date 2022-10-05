@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_203851) do
   create_table "couples", force: :cascade do |t|
     t.string "email"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "nearlywed_1_first"
     t.string "nearlywed_1_last"
     t.string "nearlywed_2_first"

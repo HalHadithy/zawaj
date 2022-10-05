@@ -3,7 +3,7 @@ class CreateCouples < ActiveRecord::Migration[7.0]
     create_table :couples do |t|
       t.string :email 
       t.string :username
-      t.string :password
+      t.string :password_digest
       t.string :nearlywed_1_first
       t.string :nearlywed_1_last
       t.string :nearlywed_2_first

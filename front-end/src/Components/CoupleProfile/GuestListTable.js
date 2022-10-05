@@ -1,4 +1,28 @@
+import { useEffect, useState } from 'react'
+import GuestListCard from './GuestListCard'
+
 const GuestListTable= () => {
+    const [guestList, setGuestList] = useState([])
+   
+    useEffect(() =>{
+        let token = localStorage.getItem("jwt");
+        console.log(token)
+        fetch(`http://localhost:4020/guests_couple`, {
+            headers: {
+                token: token,
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => res.json())
+        .then((guests) => {
+            console.log(guests)
+            setGuestList(guests)
+        });
+        
+      },[]) 
+
+      
+        
 
     return (
         <div>
@@ -14,13 +38,7 @@ const GuestListTable= () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        {/* <td>{Name}</td>
-                        <td>{Email}</td>
-                        <td>{Address}</td>
-                        <td>{Plus One}</td>
-                        <td>{RSVP Status}</td> */}
-                    </tr>
+                    {guestList.map((guest)=><GuestListCard key={guest.id} guest={guest}/>)}
                 </tbody>
             </table>
         </div>

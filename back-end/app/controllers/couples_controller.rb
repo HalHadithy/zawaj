@@ -1,30 +1,36 @@
 class CouplesController < ApplicationController
-  before_action :set_couple, except: [:index, :create, :login]
+  before_action :set_couple, except: [:index, :show, :create, :login]
 
-  
   # GET /couples
   def index
     @couples = Couple.all
     render json: @couples, status: :ok 
   end
 
+
   # GET /couples/:id
   def show
-    render json: @couple
+    couple = Couple.find(params[:id])
+    render json: couple
   end
+
 
   # POST /couples
   def create
     newCouple = Couple.new(couple_params_create)
     if newCouple.save
-      render json: newCouple, status: :created
+      coupleLI = Couple.find_by!(username: params[:username]).try(:authenticate, params[:password])
+      token = generate_token(coupleLI.id)
+      render json: { couple: coupleLI, token: token }    
     else
       render json: newCouple.errors, status: :unprocessable_entity
     end
+
   end
 
-  # PATCH/PUT /couples/:id
-  def update
+
+  # PATCH/PUT /couples_edit
+  def couples_edit
     if @couple.update(couple_params_edit)
       render json: @couple, status: :ok
     else
@@ -32,22 +38,18 @@ class CouplesController < ApplicationController
     end
   end
 
+
   def login
-    couple = Couple.find_by!(username: params[:username])#.try(:authenticate, params[:password])
-    if couple
-      # token = generate_token(couple.id)
-      render json: couple
-    # else
-    #   render json: {error: "Incorrect Password"}
+    coupleLI = Couple.find_by!(username: params[:username]).try(:authenticate, params[:password])
+    if coupleLI
+      token = generate_token(coupleLI.id)
+      render json: { couple: coupleLI, token: token }
+    else
+      render json: {error: "Incorrect Password or Username"}, status: 401
     end
   end
 
   def current_couple
-    # gets your current couple info based off of your token
-    # token = request.headers["token"]
-    # decode the token
-    # couple_id = decode_token(token)
-        # we defined decode and generate in application_controller
     if @couple 
       render json: @couple
     else
@@ -55,11 +57,11 @@ class CouplesController < ApplicationController
     end
   end
 
+
   # PATCH /change_photo/:id
   def change_photo
-    couple = Couple.find(params[:id])
-    if couple.update(photo_params)
-        render json: couple, status: :ok
+    if @couple.update(photo_params)
+        render json: @couple, status: :ok
     else
         render json: { errors: couple.errors.full_messages}, status: 422
     end 
@@ -69,7 +71,9 @@ class CouplesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_couple
-      @couple = Couple.find(params[:id])
+      token = request.headers["token"]
+      couple_id = decode_token(token)
+      @couple = Couple.find(couple_id)
     end
 
     # Only allow a list of trusted parameters through.
@@ -78,11 +82,13 @@ class CouplesController < ApplicationController
     end
 
     def couple_params_create
-      params.require(:couple, :email, :username, :password).permit(:nearlywed_1_first, :nearlywed_1_last, :nearlywed_2_first, :nearlywed_2_last)
+      # params.require(:email, :username, :password).permit(:nearlywed_1_first, :nearlywed_1_last, :nearlywed_2_first, :nearlywed_2_last)
+      params.permit(:email, :username, :password, :nearlywed_1_first, :nearlywed_1_last, :nearlywed_2_first, :nearlywed_2_last)
+
     end
 
     def photo_params
-      params.require(:couple).permit(:photo)
+      params.permit(:photo)
     end
     
 end

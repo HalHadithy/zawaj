@@ -1,0 +1,15 @@
+@mixin flexInline($width: 100%, $justifyC:space-between){
+    display: flex;
+    flex-direction: row;
+    width: $width;
+    justify-content: $justifyC;
+}
+
+#coup-vend{
+    @include flexInline($width:20%, $justifyC)
+}
+
+#scrollable-nav-other{
+    @include flexInline($width:25%, $justifyC)
+}
+

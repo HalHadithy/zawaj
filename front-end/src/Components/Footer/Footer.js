@@ -1,3 +1,5 @@
+import '../../Style/Footer.css'
+
 const Footer = () => {
 
 
@@ -5,7 +7,7 @@ const Footer = () => {
 
 
     return (
-      <div>
+      <div className='footer'>
 
         <p> info here about the app</p>
         

@@ -1,54 +1,88 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LogIn = ({setIsLoggedIn, setCurrentCouple}) => {
+import logo from '../../Images/logo.jpeg'
+import rings from '../../Images/rings.png'
+
+
+const LogIn = ({setIsLoggedIn}) => {
 
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("")
+  const [formData, setFormData] = useState({
+    username:'',
+    password:''
+  });
 
   
   const handleSubmit = (e) =>{
     e.preventDefault()
-    // fetch("/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ username }),
-    // })
-    //   .then((r) => r.json())
-    //   .then((couple) => setCurrentCouple(couple));
-    // }
+    console.log("starting post")
+    console.log(formData)
 
+    fetch("http://localhost:4020/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify( formData ),
+    })
+    .then((r) => r.json())
+    .then((data) => {
+      localStorage.setItem("jwt", data.token)
+      // console.log(data)
+      setIsLoggedIn(true)
+    })
     navigate(-1)
+  };  
 
-  }
 
-
+  let updateForm = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(formData)
+  
+    
 
     return (
-      <div>
-        <title>Login</title>
+      <div id="login-container">
+        <img src={rings} alt="rings" className="rings"/>
+
+        <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
+        <h3>Login</h3>
 
         <form onSubmit={handleSubmit}>
-            <label>
+            <label 
+              className="floating-label"
+              for="username"
+            >
               Username:
-              <input
-                type="text"
-                value={username}
-                onChange={(e)=>setUsername(e.target.value)}
-              />
             </label>
-            <label>
+            <input
+              placeholder="Username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={updateForm}
+            />
+            
+            <label 
+              className="floating-label"
+              for="password"
+            >
               Password:
-              <input
-                type="text"
-                value={password}
-                onChange={(e)=>{ setPassword(e.target.value) } }
-              />
             </label>
+            <input
+              placeholder="Password"
+              type="text"
+              name="password"
+              value={formData.password}
+              onChange={updateForm}
+            />
+         
             
           <button type="submit">Login</button>
 
@@ -60,7 +94,3 @@ const LogIn = ({setIsLoggedIn, setCurrentCouple}) => {
   }
   
   export default LogIn;
-
-
-
-  

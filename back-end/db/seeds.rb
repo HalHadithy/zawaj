@@ -22,3 +22,10 @@ Guest.create!(name: "Lady Montague", email: "", address: "", rsvpd: true, attend
 Guest.create!(name: "Lord Montague", email: "lMonty@gmail.com", address: "Vicolo Castelrotto, 2, 37121 Verona VR, Italy", rsvpd: true, attending: false, plus_1: false, plus_1_attending: false, side_of_isle: "nearlywed_1", party: true, party_member: "father", couple_id: rj.id, invitation_id: i3.id )
 
 
+# "username":'romanBoi',
+# "password":'LuvCleo@Nile1',
+# "email":'romanBoi@aol.com',
+# "nearlywed_1_first": 'Mark', 
+# "nearlywed_1_last": 'Antony',
+# "nearlywed_2_first":'Cleopatra',
+# "nearlywed_2_last":'Philopator'

@@ -1,5 +1,5 @@
 class InvitationSerializer < ActiveModel::Serializer
-  attributes :id
-  has_many :couples
+  attributes :id, :email, :address
   
+  has_many :guests, serializer: GuestInvitationSerializer
 end
