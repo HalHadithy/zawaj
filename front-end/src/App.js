@@ -12,6 +12,7 @@ import EditGuestList from './Components/CoupleProfile/EditGuestList'
 import RsvpSummary from './Components/CoupleProfile/RsvpSummary'
 import EditInfo from './Components/CoupleProfile/EditInfo'
 import Footer from './Components/Footer/Footer'
+import ChoseWebsiteTemplate from './Components/WeddingWebsite/ChoseWebsiteTemplate'
 
 import './App.css'
 import './Style/ProfilePage.css'
@@ -77,6 +78,8 @@ function App() {
           <Route exact path="/edit-guest-list" element={<EditGuestList currentCouple={currentCouple} guestList={guestList} setGuestList={setGuestList} />} />
           <Route exact path="/edit-info" element={<EditInfo setCurrentCouple={setCurrentCouple}/>} />
           <Route exact path="/rsvp-summary" element={<RsvpSummary currentCouple={currentCouple}/>} />
+          <Route exact path="/chose-website" element={<ChoseWebsiteTemplate isLoggedIn={isLoggedIn} currentCouple={currentCouple}/>}/>
+          {/* <Route exact path="/chose-invitation" element={<ChoseInvitationTemplate/>}/> */}
           <Route exact path="*" element={<LOLSilly/>} />
         </Routes>
       </div>

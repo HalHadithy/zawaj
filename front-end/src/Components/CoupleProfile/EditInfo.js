@@ -8,6 +8,8 @@ const EditInfo= ({setCurrentCouple}) => {
     let couple_id = couple.id
     let couple_photo = couple.photo_url
 
+    const [chk, setChk] = useState("")
+
     console.log(couple)
     console.log(couple_id)
 
@@ -27,7 +29,7 @@ const EditInfo= ({setCurrentCouple}) => {
             website: true, 
             website_style: ""
         })
-    
+
     useEffect(() =>{
         let token = localStorage.getItem("jwt");
         fetch(`http://localhost:4020/current_couple`, {
@@ -54,6 +56,8 @@ const EditInfo= ({setCurrentCouple}) => {
                     website: couple.website,
                     website_style: couple.website_style
                 })
+                {form.invitation ? setChk("checked"): setChk("")}
+
                 setCouple(couple)
         });
     },[]) 
@@ -181,7 +185,7 @@ const EditInfo= ({setCurrentCouple}) => {
                         onChange={updateInfo}
                     />
                     <br/>
-                    <label>Create A Wedding Invitation: </label>
+                    {/* <label>Create A Wedding Invitation: </label>
                     <input 
                         type="checkbox" 
                         id="check-invitation" 
@@ -197,7 +201,7 @@ const EditInfo= ({setCurrentCouple}) => {
                         name="website" 
                         value={form.website}
                         onClick={updateCheckbox}
-                    />
+                    /> */}
                     <input 
                         type="submit" 
                         value="Submit"

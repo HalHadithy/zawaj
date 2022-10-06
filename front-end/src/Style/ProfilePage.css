@@ -18,8 +18,6 @@
     /* border-radius: 20px; */
     font-weight: 600;
     border-right: 2px solid #c38f8f8a;
-
-    
 }
 
 .profile-right{
@@ -57,4 +55,13 @@
 #profile-page-table  td {
     justify-content: center;
     text-align: center;
+}
+
+
+
+#edit-our_story {
+    word-wrap:normal;
+    /* word-break: break-all; */
+    width: 70%;
+    height: 1rem;
 }
