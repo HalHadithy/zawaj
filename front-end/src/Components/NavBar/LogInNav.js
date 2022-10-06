@@ -7,6 +7,7 @@ import love from '../../Images/love.png'
 const LogIn = ({isLoggedIn, currentCouple}) => {
 
     const navigate = useNavigate()
+    console.log(currentCouple)
   
     const login = <h5 onClick={()=> navigate("/login")}>login</h5>
     

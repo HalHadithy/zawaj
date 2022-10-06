@@ -1,25 +1,22 @@
 .profile-div {
     position: relative;
     margin: 8%;
-    padding: 1.2em;
+    /* padding: 1.2em; */
     display: flex;
     flex-direction: row;
-}
-
-.profile-div div {
+    border-radius: 20px;
     border: 1px solid black;
+
 }
-
-
 
 .profile-left{
-    border: 1px solid black;
-    padding: 2rem 1rem 2rem 1rem;
+    /* border: 1px solid black; */
+    padding: 3rem 0.5rem;
     width: 15%;
 }
 
 .profile-right{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 3rem;
     width: 80%;
 }
@@ -33,7 +30,7 @@
 .profile-div ul {
     list-style-type: none;
     margin: 0;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .profile-div li {

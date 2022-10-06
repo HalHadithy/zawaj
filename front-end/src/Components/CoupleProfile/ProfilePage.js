@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileNavBar from "./ProfileNavBar";
 import GuestListTable from "./GuestListTable";
@@ -6,13 +5,7 @@ import GuestListTable from "./GuestListTable";
 
 const ProfilePage = ( {currentCouple} ) => {
     const navigate = useNavigate();
-    const [couple, setCouple] = useState({})
-
-    console.log(currentCouple)
-
-
-    //fetch wedding party, there should be a route in backend just for wedding party
-     
+    let image_url = `localhost:4020${currentCouple.photo_url}`
 
     return (
         <div className="profile-div">
@@ -21,22 +14,19 @@ const ProfilePage = ( {currentCouple} ) => {
                 <h2>{ `${currentCouple.nearlywed_1_first} & ${currentCouple.nearlywed_2_first}'s Wedding Profile`}</h2>
                 <div>
                     <button onClick={()=>navigate('/edit-info')}>Edit</button>
-                    <ul>
-                        <li>Username: {currentCouple.username}</li>
-                        <li>Primary Email Address: {currentCouple.email}</li>
-                        <li>Nearlywed Name: {currentCouple.nearlywed_1_first + " " + currentCouple.nearlywed_1_last}</li>
-                        <li>Nearlywed Name: {currentCouple.nearlywed_2_first + " " + currentCouple.nearlywed_2_last}</li>
-                        <li>Your Story: </li>
-                        <li>{currentCouple.our_story}</li>
-                        <li>Images: {currentCouple.photo_url}</li>
-                    </ul>
-                    <div>
+                        <p><strong>Username:</strong> {currentCouple.username}</p>
+                        <p><strong>Primary Email Address:</strong>   {currentCouple.email}</p>
+                        <p><strong>Nearlywed Name:</strong>   {currentCouple.nearlywed_1_first + " " + currentCouple.nearlywed_1_last}</p>
+                        <p><strong>Nearlywed Name:</strong>   {currentCouple.nearlywed_2_first + " " + currentCouple.nearlywed_2_last}</p>
+                        <p><strong>Your Story:</strong></p>
+                        <p>{currentCouple.our_story}</p>
+                        <p><strong>Images:</strong></p>
                     {currentCouple.photo_url 
                         ? 
-                        <img src={currentCouple.photo_url} alt='Your Best Memories' key ={currentCouple.photo_url}/>
+                        // <p>{image_url}</p>
+                        <img src={image_url} alt='Your Best Memories' key ={currentCouple.photo_url}/>
                         : "no photos"
                     }
-                    </div>
               
                 </div>
 

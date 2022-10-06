@@ -6,7 +6,7 @@ const EditInfo= ({setCurrentCouple}) => {
 
     const [couple, setCouple] = useState({})
     let couple_id = couple.id
-    let couple_photo = couple.photo_url
+    let couple_photo = couple.photo
 
     // console.log(couple_id)
     console.log(couple)
@@ -101,6 +101,11 @@ const EditInfo= ({setCurrentCouple}) => {
           method: 'PATCH',
           body: formData
         })
+        .then((res) => res.json())
+        .then((data) => {{
+            setCurrentCouple(data)
+            setCouple(data)
+        }})
     }
 
 
@@ -216,7 +221,12 @@ const EditInfo= ({setCurrentCouple}) => {
                         value="Submit"
                     />
                 </form>
-                <img src="http://localhost:4020/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9JYTJWNVNTSWhhWEEyZFdJME9XcHlaRFk1ZEhNeFkyTnRhRE5yTlRSaGJ6QjRZZ1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpVldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SW5KdmJXVnZMV0Z1WkMxcWRXeHBaWFF1YW5CbFp5STdJR1pwYkdWdVlXMWxLajFWVkVZdE9DY25jbTl0Wlc4dFlXNWtMV3AxYkdsbGRDNXFjR1ZuQmpzR1ZEb1JZMjl1ZEdWdWRGOTBlWEJsU1NJUGFXMWhaMlV2YW5CbFp3WTdCbFE2RVhObGNuWnBZMlZmYm1GdFpUb0tiRzlqWVd3PSIsImV4cCI6IjIwMjItMTAtMDVUMjE6NTM6NDIuMjIyWiIsInB1ciI6ImJsb2Jfa2V5In19--ed958c1c4d08ea46b5d97a3c1a5ea98db1ebadaa/romeo-and-juliet.jpeg" alt="couples photo"/>
+                {couple._url ?
+                    <img src={couple.photo_url} alt="couples photo"/>
+                :
+                null
+                }
+                
             </div>
             
         </div>
