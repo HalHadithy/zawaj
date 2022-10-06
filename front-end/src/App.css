@@ -19,3 +19,21 @@ button {
   transition:  all .3s ease; 
   outline: 0; 
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); /*  font-family: 'Quicksand', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap'); /*  font-family: 'Roboto', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Arapey&display=swap'); /* font-family: 'Arapey', serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap'); /*font-family: 'Zen Antique Soft', serif;  */
+@import url('https://fonts.googleapis.com/css2?family=Coustard:wght@400;900&display=swap');/* font-family: 'Coustard', serif; */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap'); /* font-family: 'Special Elite', cursive; */
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+
+p, li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}

@@ -56,7 +56,7 @@ const CreateAnAccount = ({setIsLoggedIn}) => {
 
         <form onSubmit={handleSubmit}>
           <label>
-            Username:
+            Username:      
             <input
                 type="text"
                 name="username"
@@ -65,7 +65,7 @@ const CreateAnAccount = ({setIsLoggedIn}) => {
             />
           </label>
           <label>
-            Password:
+            Password:      
             <input
               type="text"
               name="password"
@@ -122,7 +122,7 @@ const CreateAnAccount = ({setIsLoggedIn}) => {
             />
           </label>
 
-          <button type="submit">Create Account</button>
+          <button type="submit" className="log-create-btn">Create Account</button>
 
         </form>
 

@@ -6,10 +6,10 @@ const EditInfo= ({setCurrentCouple}) => {
 
     const [couple, setCouple] = useState({})
     let couple_id = couple.id
-    let couple_photo = couple.photo
+    let couple_photo = couple.photo_url
 
-    // console.log(couple_id)
     console.log(couple)
+    console.log(couple_id)
 
     const [picData, setPicData] = useState("")
     const [form, setForm] = useState({ 
@@ -203,31 +203,35 @@ const EditInfo= ({setCurrentCouple}) => {
                         value="Submit"
                     />
                 </form>
-            </div>
 
-            <div>
+                <div>
                 <h2>Add a Photo</h2>
                 <form onSubmit={createPics}>
                     <label>Choose a photo to share with family and friends:</label>
                     <input
                         type="file"
                         id="photo"
-                        name ="photo"
+                        // name ="photo"
                         accept='image/*'
                         onChange={(e)=> {setPicData(e.target.files[0])}}
                     />
                     <input 
                         type="submit" 
                         value="Submit"
+                        id="submit-photo"
                     />
                 </form>
-                {couple._url ?
+
+                {/* {couple._url ? */}
                     <img src={couple.photo_url} alt="couples photo"/>
-                :
+                {/* :
                 null
-                }
+                } */}
                 
             </div>
+            </div>
+
+            
             
         </div>
     )

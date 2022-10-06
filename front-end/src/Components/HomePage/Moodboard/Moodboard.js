@@ -41,6 +41,7 @@ const MoodBoard = () => {
                     <img src={imgArray.image} alt='inspo pic'/>
                 </div>            
             </div>
+            
         </div>
 
     );

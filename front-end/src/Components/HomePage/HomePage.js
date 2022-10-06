@@ -36,15 +36,15 @@ const HomePage = ({isLoggedIn, currentCouple}) => {
       <div  className="home-div" id="home-featured">
         <div id="home-featured-title">
           <hr/>
-          <h3>where we have been featured</h3>
+          <h2>where we have been featured</h2>
           <hr/>
         </div>
 
         <div id="home-featured-list">
-            <h4>Vogue</h4>
-            <h4>Bye Money Magazine</h4>
-            <h4>Forbes</h4>
-            <h4>Allure</h4>
+            <h4 id="vogue"><strong>Vogue</strong></h4>
+            <h4 id="Bye-money">Bye Money Magazine</h4>
+            <h4 id="forbes">Forbes</h4>
+            <h4 id="allure">allure</h4>
         </div>
       </div>
      <HomeBlog/>

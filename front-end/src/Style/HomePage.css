@@ -1,7 +1,7 @@
 /* Other Pages */
 #home{
     padding: 0 2rem;
-
+    color: #69201b;
 }
 
 
@@ -49,10 +49,13 @@
     flex-direction: row;
 }
 #home-featured-title hr{
-    border: 1px solid black;
-    width: 30%;
+    border: 1px solid #69201b;
+    width: 29%;
     height: 0.2px;
+    top: 30px;
+    position: relative;
 }
+
 
 #home-featured h3{
     margin: auto;
@@ -73,6 +76,22 @@
     margin: auto;
 }
 
+#vogue{
+    font-family: 'Arapey', serif;
+    font-size: medium;
+}
+
+#forbes{
+    font-family: 'Zen Antique Soft', serif;
+}
+
+#Bye-money{
+    font-family: 'Coustard', serif;
+}
+#allure {
+    font-family: 'Special Elite', cursive; 
+}
+
 /* Blogs */
 
 #home-blog {
@@ -91,4 +110,3 @@
     background-color: #c38f8f;
     color:rgb(71, 8, 8);
 }
-

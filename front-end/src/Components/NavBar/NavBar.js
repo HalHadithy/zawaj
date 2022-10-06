@@ -20,13 +20,12 @@ const NavBar = (  {isLoggedIn, currentCouple}  ) => {
             {isLoggedIn ? null : loginNav}
             {isLoggedIn ? null : <h5 onClick={()=> navigate('/create-account')}>Create An Account</h5>}
           </div>
-          
         </div>
         
         <div className="not-scrollable-nav">
-          <div>
+          <div id="scrollable-nav-other">
             <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
-            <h2>Zawaj</h2>
+            <h1>Zawaj</h1>
           </div>
           {isLoggedIn ? loginNav : null }
         </div>

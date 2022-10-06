@@ -49,7 +49,7 @@ const LogIn = ({setIsLoggedIn}) => {
 
     return (
       <div className="login-container">
-        <img src={rings} alt="rings" className="rings"/>
+        {/* <img src={rings} alt="rings" className="rings"/> */}
 
         <img src={logo} alt="company logo" className="company-logo" onClick={()=> navigate('/')}/>
         <h3>Login</h3>
@@ -84,7 +84,7 @@ const LogIn = ({setIsLoggedIn}) => {
             />
          
             
-          <button type="submit">Login</button>
+          <button type="submit" className="log-create-btn">Login</button>
 
         </form>
 
