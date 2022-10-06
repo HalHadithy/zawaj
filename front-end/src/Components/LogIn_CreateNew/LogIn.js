@@ -33,7 +33,7 @@ const LogIn = ({setIsLoggedIn}) => {
       // console.log(data)
       setIsLoggedIn(true)
     })
-    navigate(-1)
+    navigate("/")
   };  
 
 

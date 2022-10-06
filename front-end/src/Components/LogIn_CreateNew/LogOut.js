@@ -29,7 +29,7 @@ const LogOut= ({setIsLoggedIn}) => {
     return (
         <div>
             {/* {logoutMessage ? */}
-                <div>
+                <div id="logout-message">
                     <h1>You have logged out</h1>
                     <h2>We hope to see you soon!</h2>
                 </div>

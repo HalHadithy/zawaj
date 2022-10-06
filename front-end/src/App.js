@@ -74,7 +74,7 @@ function App() {
           <Route exact path="/login" element={<LogIn setIsLoggedIn={setIsLoggedIn}/>} />
           <Route exact path="/logout" element={<LogOut setIsLoggedIn={setIsLoggedIn}/>} />
           <Route exact path="/profile-page" element={<ProfilePage currentCouple={currentCouple}/>} />
-          <Route exact path="/edit-guest-list" element={<EditGuestList currentCouple={currentCouple} guestList={guestList}/>} />
+          <Route exact path="/edit-guest-list" element={<EditGuestList currentCouple={currentCouple} guestList={guestList} setGuestList={setGuestList} />} />
           <Route exact path="/edit-info" element={<EditInfo setCurrentCouple={setCurrentCouple}/>} />
           <Route exact path="/rsvp-summary" element={<RsvpSummary currentCouple={currentCouple}/>} />
           <Route exact path="*" element={<LOLSilly/>} />

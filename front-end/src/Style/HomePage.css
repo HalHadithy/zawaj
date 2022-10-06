@@ -31,9 +31,6 @@
     padding: 5.5rem 1rem;
 }
 
-
-
-
 /* featured */
 #home-featured {
     margin: auto;
@@ -48,6 +45,7 @@
     display: flex;
     flex-direction: row;
 }
+
 #home-featured-title hr{
     border: 1px solid #69201b;
     width: 29%;
@@ -55,7 +53,6 @@
     top: 30px;
     position: relative;
 }
-
 
 #home-featured h3{
     margin: auto;
@@ -95,18 +92,68 @@
 /* Blogs */
 
 #home-blog {
+    padding: 0rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#home-blog-container {
     padding: 1rem;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
 }
 
 .blog-card{
-    padding: 2rem;
-    margin: 1.5rem;
-    width: 300px;
+    padding: 0.5rem 2rem;
+    margin: 2rem;
+    margin-bottom: 4rem;
+    min-width: 200px;
+    height: 300px;
     border: 0.5px solid black;
-    justify-content: center;
     background-color: #c38f8f;
     color:rgb(71, 8, 8);
+    box-shadow:  0px 0px 10px -2px #69201b; 
+}
+
+.blog-card p{
+    min-width: 200px;
+    margin-left: 1rem ;
+    padding: 1rem;
+    height: 260px;
+    border: 0.5px solid black;
+    background-color: #fdf0f0;
+    color:rgb(71, 8, 8);
+    box-shadow:  0px 0px 10px -2px #69201b; 
+    border-radius: 4px;
+}
+
+
+/* Mood Board */
+
+#home-moodboard {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 4rem;
+}
+
+#home-moodboard-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    margin: 2rem 4rem;
+}
+
+#home-moodboard-left {
+    width: 20%;
+    height: 48rem;
+    justify-content: left;
+}
+
+#moodboardCard-image-carousel {
+    position: relative;
+    right: 0rem;
+    width: 60%;
+    height: 48rem;
 }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const EditGuestModal= ({form, setForm, handleInfoSubmit, currentCouple, modal, closeModal}) => {
+const EditGuestModal= ({form, setForm, handleInfoSubmit, currentCouple, setModal}) => {
 
 
     const updateInfo = (e) => {
@@ -12,9 +12,9 @@ const EditGuestModal= ({form, setForm, handleInfoSubmit, currentCouple, modal, c
 
     
     return (
-        <div id={modal}>
+        <div id="modal-edit-guest-container">
             <div id="modal-edit-guest">
-                <button onClick={closeModal}>X</button>
+            <button onClick={()=>setModal(state => !state)}>X</button>
 
                 <br/>
                 <br/>

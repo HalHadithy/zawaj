@@ -5,7 +5,6 @@ import GuestListTable from "./GuestListTable";
 
 const ProfilePage = ( {currentCouple} ) => {
     const navigate = useNavigate();
-    let image_url = `localhost:4020${currentCouple.photo_url}`
 
     return (
         <div className="profile-div">
@@ -24,7 +23,7 @@ const ProfilePage = ( {currentCouple} ) => {
                     {currentCouple.photo_url 
                         ? 
                         // <p>{image_url}</p>
-                        <img src={image_url} alt='Your Best Memories' key ={currentCouple.photo_url}/>
+                        <img src={currentCouple.photo_url} alt='Your Best Memories' key ={currentCouple.photo_url}/>
                         : "no photos"
                     }
               

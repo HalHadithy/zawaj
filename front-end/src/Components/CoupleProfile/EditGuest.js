@@ -2,6 +2,7 @@ import { useState } from 'react'
 import EditGuestModal from './EditGuestModal'
 
 const EditGuest= ({guest, currentCouple}) => {
+    const [modal, setModal] = useState(false)
 
     const [form, setForm] = useState({ 
             name: guest.name, 
@@ -14,15 +15,6 @@ const EditGuest= ({guest, currentCouple}) => {
             party: guest.party, 
             party_member: guest.party_member
         })
-    const [modal, setModal] = useState("modal-edit-guest-container-hide")
-
-
-    const editGuest =()=>{
-        setModal("modal-edit-guest-container")
-    }
-    const closeModal =()=>{
-        setModal("modal-edit-guest-container-hide")
-    }
 
     const handleInfoSubmit =(e)=>{
         e.preventDefault()
@@ -36,7 +28,7 @@ const EditGuest= ({guest, currentCouple}) => {
             body: JSON.stringify(form)
         })
         .then((res) => res.json())
-        .then((data) => { console.log(data)
+        .then((data) => {
         //     setForm({ 
         //     name: data.name, 
         //     email: data.email, 
@@ -52,18 +44,26 @@ const EditGuest= ({guest, currentCouple}) => {
     }
     
     return (
-            <tr onClick={editGuest}>
-                <td>{guest.name}</td>
-                <td>{guest.email}</td>
-                <td>{guest.address}</td>
-                <td>{guest.party ? "wedding party member" : "guest"}</td>
-                <td>{guest.party ? guest.party_member : " " }</td>
-                <td>{guest.side_of_isle}</td>
-                <td>{guest.plus_1? "allowed" : "not allowed"}</td>
-                {/* {guest.plus_1? <td>{guest.plus_1_attending?"bringing a +1":"not bringing a +1"}</td> : null} */}
-                <td>{guest.attending? "attending":"not attending"}</td>
-                <EditGuestModal form={form} setForm={setForm} handleInfoSubmit={handleInfoSubmit} currentCouple={currentCouple} modal={modal} closeModal={closeModal}/>
-            </tr>
+        <>
+        
+        <tr onClick={()=>setModal(true)}>
+            <td>{guest.name}</td>
+            <td>{guest.email}</td>
+            <td>{guest.address}</td>
+            <td>{guest.party ? "wedding party member" : "guest"}</td>
+            <td>{guest.party ? guest.party_member : " " }</td>
+            <td>{guest.side_of_isle}</td>
+            <td>{guest.plus_1? "allowed" : "not allowed"}</td>
+            {/* {guest.plus_1? <td>{guest.plus_1_attending?"bringing a +1":"not bringing a +1"}</td> : null} */}
+            <td>{guest.rsvpd? "yes":"not yet"}</td>
+            <td>{guest.attending? "attending":"not attending"}</td>
+        </tr>
+            {modal ?
+                <EditGuestModal form={form} setForm={setForm} handleInfoSubmit={handleInfoSubmit} currentCouple={currentCouple} setModal={setModal} />
+            :
+            null
+            }
+        </>
     )
   }
   

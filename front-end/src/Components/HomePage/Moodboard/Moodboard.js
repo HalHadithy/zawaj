@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import MoodboardCard from "./MoodboardCard";
 const MoodBoard = () => {
+
+    const [comments, setComment] = useState("")
+    const [image, setImage] = useState("")
 
     let imgArray = [
         {
@@ -29,18 +33,38 @@ const MoodBoard = () => {
     ]
 
 
+    useEffect(()=>{
+        setImage(imgArray[0].image)
+        setComment(imgArray[0].comment)
+        let i = 0
+        const id = setInterval(() => {
+            setImage(imgArray[i].image)
+            setComment(imgArray[i].comment)
+            i++
+            if (i === imgArray.length) {
+                i = 0
+            }
+        }, 5000);
+
+        return () => clearInterval(id)
+    }, [])
+
+
     return (
         <div className="home-div" id="home-moodboard">
-            <div id="home-moodboard-left">
+            <div id="home-moodboard-top">
                 <h2>Your Moodboard</h2>
-                <p>{imgArray.comment}</p>
             </div>
-        
-            <div id="home-moodboard-right">
+            <div id="home-moodboard-bottom">
+                <div id="home-moodboard-left">
+                    <h4>{comments}</h4>
+                </div>
                 <div id="moodboardCard-image-carousel">
-                    <img src={imgArray.image} alt='inspo pic'/>
+                    <img src={image} alt='inspo pic'/>
                 </div>            
             </div>
+
+           
             
         </div>
 

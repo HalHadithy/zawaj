@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import ProfileNavBar from './ProfileNavBar'
 import EditGuest from './EditGuest'
 
-const EditGuestList= ({currentCouple, guestList}) => {
-
+const EditGuestList= ({currentCouple, guestList, setGuestList}) => {
     const body = guestList.map((guest)=><EditGuest key={guest.id} guest={guest} currentCouple={currentCouple}/>)
 
+    const currentCoupleid = currentCouple.id
     const [newGuestForm, setNewGuestForm] = useState({ 
             name: "", 
             email: "", 
@@ -14,13 +14,13 @@ const EditGuestList= ({currentCouple, guestList}) => {
             side_of_isle: "", 
             party: false, 
             party_member: "",
-            couple_id: currentCouple.id,
+            couple_id: currentCoupleid,
             invitation_id: 1
         })
     // const [address, setAddress] = useState("")
     // setAddress(newGuestForm.address)
-    console.log(newGuestForm)
     // console.log(address)
+    console.log(newGuestForm)
 
 
     const updateNewGuestInfo = (e) => {
@@ -51,6 +51,7 @@ const EditGuestList= ({currentCouple, guestList}) => {
 
     const handleCreateGuest = (e) => {
         e.preventDefault()
+        console.log(newGuestForm)
         fetch("http://localhost:4020/guests", {
             method: "POST",
             headers: {
@@ -58,6 +59,8 @@ const EditGuestList= ({currentCouple, guestList}) => {
             },
             body: JSON.stringify( newGuestForm ),
         })
+        .then((r) => r.json())
+        .then((data) => {setGuestList(...guestList, data)})
     }
     
 
@@ -133,8 +136,8 @@ const EditGuestList= ({currentCouple, guestList}) => {
                             value={newGuestForm.party}
                             onChange={updateNewGuestInfo}
                         >
-                            <option value="true"> wedding party member</option>
-                            <option value="false"> guest</option>
+                            <option value={true}> wedding party member</option>
+                            <option value={false}> guest</option>
                         </select>
 
                         <br/>
@@ -174,8 +177,8 @@ const EditGuestList= ({currentCouple, guestList}) => {
                             value={newGuestForm.plus_1}
                             onChange={updateNewGuestInfo}
                         >
-                            <option value="true">allowed</option>
-                            <option value="false">not allowed</option>
+                            <option value={true}>allowed</option>
+                            <option value={false}>not allowed</option>
                         </select>
 
 

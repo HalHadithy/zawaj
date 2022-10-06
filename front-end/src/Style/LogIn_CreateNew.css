@@ -101,3 +101,9 @@ input {
     animation-name: ring;
     animation-duration: 30s;
   }
+
+  #logout-message {
+    width: 30%;
+    margin: 10% auto;
+    justify-content: center;
+  }

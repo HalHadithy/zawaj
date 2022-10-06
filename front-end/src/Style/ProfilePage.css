@@ -13,6 +13,13 @@
     /* border: 1px solid black; */
     padding: 3rem 0.5rem;
     width: 15%;
+    color: #69201b;
+    /* background-color: #d3adad; */
+    /* border-radius: 20px; */
+    font-weight: 600;
+    border-right: 2px solid #c38f8f8a;
+
+    
 }
 
 .profile-right{
@@ -41,3 +48,13 @@
     z-index: 2;
     top:2.7rem;
 } */
+
+#profile-page-table {
+    width: 100%;
+    justify-content: center;
+}
+
+#profile-page-table  td {
+    justify-content: center;
+    text-align: center;
+}

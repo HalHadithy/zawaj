@@ -27,7 +27,7 @@ const GuestListTable= () => {
     return (
         <div>
             
-            <table>
+            <table id="profile-page-table">
                 <thead>
                     <tr>
                         <th>Name</th>
