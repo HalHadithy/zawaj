@@ -3,8 +3,8 @@ class CoupleSerializer < ActiveModel::Serializer
 
   def photo_url
     if object.photo.attached?
-      Rails.application.routes.url_helpers.rails_blob_path(object.photo, host: "local")
-
+      link = Rails.application.routes.url_helpers.rails_blob_path(object.photo, host: "local")
+      link = "http://localhost:4020" + link
     end
   end
 

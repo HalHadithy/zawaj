@@ -10,7 +10,19 @@ const ChoseWebsiteTemplate = ({isLoggedIn, currentCouple}) => {
     console.log(currentCouple)
     const [style, setStyle] = useState('flower')
   
-    // const login = <h5 onClick={()=> navigate("/login")}>login</h5>
+    const editStyle =(e)=>{
+        e.preventDefault()
+        let token = localStorage.getItem("jwt");
+        fetch(`http://localhost:4020/couples_edit`, {
+            method: 'PATCH',
+            headers: {
+                token: token,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(style)
+        })
+    }
+
     
     // const loggedIn = <div id="hover-nav">
     //                     <div id= "loggedIn-nav">
@@ -31,21 +43,24 @@ const ChoseWebsiteTemplate = ({isLoggedIn, currentCouple}) => {
             <h2>Website Styles</h2>
             <div>
                 <div>
-                    <h4 onClick={()=>setStyle('flower')}>Fall</h4>
+                    <h4 onClick={()=>editStyle('winter')}>Winter</h4>
+                    <Flower currentCouple={currentCouple} isLoggedIn={isLoggedIn} style={'winter'}/>                    
+                </div>
+                
+                <div>
+                    <h4 onClick={()=>setStyle('flower')}>Spring</h4>
+                    <Flower currentCouple={currentCouple} isLoggedIn={isLoggedIn} style={style}/>
+                </div>
+
+                <div>
+                    <h4 onClick={()=>setStyle('summer')}>summer</h4>
                     <Flower currentCouple={currentCouple} isLoggedIn={isLoggedIn} style={style}/>
                 </div>
 
                 <div>
                     <h4 onClick={()=>setStyle('fall')}>Fall</h4>
-
+                    <Flower currentCouple={currentCouple} isLoggedIn={isLoggedIn} style={style}/>
                 </div>
-
-                <div>
-                    <h4></h4>
-                    <div></div>
-                    
-                </div>
-
             </div>
         </div>
        

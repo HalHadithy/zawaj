@@ -32,7 +32,7 @@ const HomePage = ({isLoggedIn, currentCouple}) => {
   return (
     <div id="home">
       <OtherPages isLoggedIn ={isLoggedIn}/>
-      <MoodBoard/>
+      {isLoggedIn?<MoodBoard/>:null}
       <div  className="home-div" id="home-featured">
         <div id="home-featured-title">
           <hr/>

@@ -26,7 +26,7 @@ class GuestsController < ApplicationController
     # POST /guests
     def create
         # token = request.headers["token"]
-        # couple_id = decode_token(token)
+        # couple_idp = decode_token(token)
         newGuest = Guest.new(guest_params_create)
         if newGuest.save
         render json: newGuest, status: :created
@@ -40,7 +40,7 @@ class GuestsController < ApplicationController
     def update
         token = request.headers["token"]
         couple_idp = decode_token(token)
-        if @guest.update(guest_params_edit) &&  @guest.couple_id = couple_idp
+        if @guest.update(guest_params_edit) &&  @guest.couple_id == couple_idp
         render json: @guest, status: :ok
         else
         render json: @guest.errors, status: :unprocessable_entity
@@ -67,11 +67,11 @@ class GuestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def guest_params_edit
-      params.require.permit(:address, :rsvpd, :attending, :plus_1_attending, :party_member, :name, :email, :plus_1, :side_of_isle, :party, :invitation_id)
+      params.permit(:name, :address, :email, :rsvpd, :attending, :plus_1, :plus_1_attending, :party_member, :side_of_isle, :party, :invitation_id)
     end
 
     def guest_params_create
-        params.permit(:name, :email, :address, :party, :party_member, :side_of_isle,  :plus_1, :couple_id, :invitation_id)
+        params.permit(:name, :email, :address, :plus_1, :side_of_isle, :party, :party_member, :couple_id, :invitation_id)
     end 
 
 end
